@@ -5,6 +5,7 @@ import trush from '../../images/trush.png';
 const ProductList = () => {
     const [products, setProducts] = useState([]);
 
+
     useEffect(() => {
         fetch('http://localhost:5000/products')
         .then(res => res.json())
@@ -19,11 +20,8 @@ const ProductList = () => {
             }
         })
         .then(res => res.json())
-        .then(data => {
-            if(data){
-                const newProducts = products.filter(item => item._id !== id);
-                setProducts(newProducts);
-            }
+        .then(result => {
+            console.log("Successfully Deleted", result)
         })
     }
     return (
@@ -38,7 +36,16 @@ const ProductList = () => {
                     <tbody>
                         {
                             products.map(item => {
-                                return <tr key={item._id}><td>{item.name}</td><td>{item.weight}</td><td>{item.price}</td><td><img src={trush} onClick="handleDeleteList('${item._id}')" className="bg-danger rounded" style={{cursor:'pointer'}} height="24px" alt="Action"></img></td></tr>
+                                return <tr key={item._id}>
+                                    <td>{item.name}</td>
+                                    <td>{item.weight}</td>
+                                    <td>{item.price}</td>
+                                    <td>
+                                    <button className="btn btn-danger" onClick={() => handleDeleteList(`${item._id}`)}>
+											<img src={trush} alt="delete" style={{ width: '21px' }} />
+										</button>
+                                    </td>
+                                    </tr>
                             })
                         }
                     </tbody>

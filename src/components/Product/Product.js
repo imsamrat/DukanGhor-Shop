@@ -21,14 +21,6 @@ const Product = ({ product }) => {
                     </Card.Body>
                 </Card>
             </div>
-
-
-        // <div className="col-md-3">
-        //     <img style={{height: '300px'}} src={product.imageURL} alt=""/>
-        //     <h3>{product.name}</h3>
-        //     <p>$ {product.price}</p>
-        //     <button>Buy Now</button>
-        // </div>
     );
 };
 
