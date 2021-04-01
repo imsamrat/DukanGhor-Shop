@@ -1,11 +1,52 @@
 import { FormControl } from '@material-ui/core';
-import React from 'react';
+import React, { useState } from 'react';
 import { InputGroup } from 'react-bootstrap';
 import { Link , NavLink } from 'react-router-dom';
 import logo from '../../images/logo.png'
 import './AddProduct.css'
+import { useForm } from "react-hook-form";
+import axios from 'axios';
 
 const AddProduct = () => {
+    const { register, handleSubmit, watch, errors } = useForm();
+    
+    const [imageURL, setImageURL] = useState();
+    const onSubmit = data => {
+        const productData = {
+            name: data.name,
+            weight: data.weight,
+            price: data.price,
+            imageURL: imageURL
+        }
+        const url = `http://localhost:5000/addProduct`;
+        
+        fetch(url, {
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(productData)
+        })
+        .then(res => console.log('Server Side Response', res))
+    };
+
+    const handleImageUpload = event => {
+        const imageData = new FormData ();
+        imageData.set('key', '16f5d7408427e03219695481eaef00f8');
+        imageData.append('image', event.target.files[0]);
+        
+        axios.post('https://api.imgbb.com/1/upload',
+        imageData)
+          .then(function (response) {
+            setImageURL(response.data.data.display_url);
+            console.log(response.data.data.display_url);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
+    }
+
     return (
         <>
             <div 
@@ -35,15 +76,18 @@ const AddProduct = () => {
                     <div style={{width:'66%', float: 'left', background:'#ffffff',  marginTop:'50px',marginLeft:'20px'}}>
                         
                     <div>
+                        <form onSubmit={handleSubmit(onSubmit)}>
                         <h5>Product Name</h5>
-                        <input type="text"/>
+                        <input name="name" defaultValue="New Product" type="text" ref={register}/>
                         <h5>Weight</h5>
-                        <input type="text"/>
+                        <input name="weight" type="text" ref={register}/>
                         <h5>Add Price</h5>
-                        <input type="text"/>
+                        <input name="price" type="text" ref={register}/>
                         <h5>Add Photo</h5>
-                        <input type="file"/>
-                        <button className='btn btn-success'>Save</button>
+                        <input type="file" onChange={handleImageUpload} ref={register}/>
+                        <input type="submit" className='btn btn-success'/>
+                        {/* <button className='btn btn-success'>Save</button> */}
+                        </form>
                     </div>
                     
 
