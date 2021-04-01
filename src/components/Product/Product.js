@@ -6,7 +6,6 @@ import './Product.css';
 const Product = ({ product }) => {
     return (
             <div className="col-md-4">
-                {/* <Link className='body_content' to={`/register/${FakeData.key}`}> */}
                 <Card
                     style={{ width: '270px', height: '390px', marginTop: '30px', borderRadius: '10px', border: 'none', overflow: 'hidden' }}>
                     <div style={{ overflow: 'hidden' }}>
@@ -18,11 +17,9 @@ const Product = ({ product }) => {
                     <Card.Body className='card_text'>
                         <Card.Title>{product.name}</Card.Title>
                         <Card.Title>TK {product.price}</Card.Title>
-                        {/* <p>$ {product.price}</p> */}
-                        <Button variant="success">Buy Now</Button>
+                        <Link to={`/checkout/${product._id}`}><Button variant="success">Buy Now</Button></Link>
                     </Card.Body>
                 </Card>
-                {/* </Link> */}
             </div>
 
 

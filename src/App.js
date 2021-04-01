@@ -11,6 +11,7 @@ import Login from './components/Login/Login';
 import NotFound from './components/NotFound/NotFound';
 import AddProduct from './components/AddProduct/AddProduct';
 import Admin from './components/Admin/Admin';
+import Checkout from './components/Checkout/Checkout';
 export const UserContext = createContext();
 
 function App() {
@@ -48,10 +49,10 @@ function App() {
             </Route>
             <Route path='/events'>
                 <RegEvent />
-            </Route>
-            <Route path='/donation' >
-                <Donation />
             </Route>*/}
+            <Route path='/checkout/:id' >
+                <Checkout />
+            </Route>
             <Route path='/admin' >
                 <Admin />
             </Route>
