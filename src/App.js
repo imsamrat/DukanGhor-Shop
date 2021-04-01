@@ -9,6 +9,8 @@ import { createContext, useState } from 'react';
 import Home from './components/Home/Home';
 import Login from './components/Login/Login';
 import NotFound from './components/NotFound/NotFound';
+import AddProduct from './components/AddProduct/AddProduct';
+import Admin from './components/Admin/Admin';
 export const UserContext = createContext();
 
 function App() {
@@ -49,13 +51,13 @@ function App() {
             </Route>
             <Route path='/donation' >
                 <Donation />
-            </Route>
+            </Route>*/}
             <Route path='/admin' >
                 <Admin />
             </Route>
-            <Route path='/addEvent' >
-                <AddEvent />
-            </Route> */}
+            <Route path='/addProduct' >
+                <AddProduct />
+            </Route> 
             <Route path='*' >
                 <NotFound />
             </Route>
