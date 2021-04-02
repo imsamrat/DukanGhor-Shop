@@ -19,7 +19,7 @@ const Login = () => {
     let { from } = location.state || { from: { pathname: "/" } };
 
     const handleLogin = () => {
-        const provider = new firebase.auth.GoogleAuthProvider(); // firebase auth provider
+        const provider = new firebase.auth.GoogleAuthProvider();
         firebase.auth().signInWithPopup(provider)
             .then(res => {
                 const { displayName, photoURL, email } = res.user;

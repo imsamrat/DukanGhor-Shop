@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../Header/Header';
 import Product from '../Product/Product';
-import { Container } from 'react-bootstrap';
-// import '../Product/Product.css';
+import { Container, Spinner } from 'react-bootstrap';
+
 
 const Home = () => {
+
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/products')
+        fetch('https://lychee-pudding-59154.herokuapp.com/products')
             .then(res => res.json())
             .then(data => setProducts(data))
     }, [])
@@ -27,15 +28,14 @@ const Home = () => {
 
                 </div>
             <Container>
-                <div className="row">
+                <div className="row justify-content-md-center">
+                    {products.length === 0 && <Spinner animation="border" variant="success" />}
                     {
                         products.map(product => <Product product={product}></Product>)
                     }
 
                 </div>
             </Container>
-
-
         </div>
     );
 };

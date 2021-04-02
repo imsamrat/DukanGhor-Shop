@@ -13,7 +13,7 @@ const Checkout = (product) => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/products/${id}`)
+        fetch(`https://lychee-pudding-59154.herokuapp.com/products/${id}`)
         .then(res => res.json())
         .then(data => setCheckout(data))
     }, [])
@@ -23,7 +23,7 @@ const Checkout = (product) => {
 
     const handleCheckout = () => {
         const orderProduct = {...loggedInUser, name, price, date};
-        fetch('http://localhost:5000/newOrder/',{
+        fetch('https://lychee-pudding-59154.herokuapp.com/newOrder/',{
             method: 'POST',
             headers: { 
                 'Content-Type': 'application/json'
@@ -58,9 +58,7 @@ const Checkout = (product) => {
                             <tr>
                                 <td></td>
                                 <Link to="/orders"><Button onClick={handleCheckout} variant="success">Checkout</Button></Link>  
-                            </tr>
-                            
-                            
+                            </tr>  
                     </tbody>
                 </table>
                 

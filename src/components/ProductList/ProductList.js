@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import trush from '../../images/trush.png';
 
 const ProductList = () => {
@@ -7,14 +6,14 @@ const ProductList = () => {
 
 
     useEffect(() => {
-        fetch('http://localhost:5000/products')
+        fetch('https://lychee-pudding-59154.herokuapp.com/products')
         .then(res => res.json())
         .then(data => setProducts(data))
     }, [])
 
     const handleDeleteList = (id) =>{
         console.log(id)
-        fetch(`http://localhost:5000/delete/${id}`,{
+        fetch(`https://lychee-pudding-59154.herokuapp.com/delete/${id}`,{
             method: 'DELETE'
         })
         .then(res => res.json())
@@ -24,7 +23,6 @@ const ProductList = () => {
     }
     return (
         <div>
-             {/* <Link to="/" className="btn btn-primary">Go Home</Link> */}
             <h4>Product list</h4>
             <div>
                 <table className="table">
