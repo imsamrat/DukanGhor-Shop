@@ -12,6 +12,7 @@ import NotFound from './components/NotFound/NotFound';
 import AddProduct from './components/AddProduct/AddProduct';
 import Admin from './components/Admin/Admin';
 import Checkout from './components/Checkout/Checkout';
+import Order from './components/Order/Order';
 export const UserContext = createContext();
 
 function App() {
@@ -44,12 +45,12 @@ function App() {
             <Route path='/register'>
                 <Login />
             </Route>
-            {/* <Route path='/blog'>
-                <Blog />
+            <Route path='/orders'>
+                <Order />
             </Route>
-            <Route path='/events'>
+            {/* <Route path='/events'>
                 <RegEvent />
-            </Route>*/}
+            </Route> */}
             <Route path='/checkout/:id' >
                 <Checkout />
             </Route>

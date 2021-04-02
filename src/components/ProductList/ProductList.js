@@ -13,11 +13,9 @@ const ProductList = () => {
     }, [])
 
     const handleDeleteList = (id) =>{
-        fetch(`http://localhost:5000/products/${id}`,{
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            }
+        console.log(id)
+        fetch(`http://localhost:5000/delete/${id}`,{
+            method: 'DELETE'
         })
         .then(res => res.json())
         .then(result => {

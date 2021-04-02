@@ -1,10 +1,13 @@
 import { Button } from 'react-bootstrap';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import Header from '../Header/Header';
+import { Link } from "react-router-dom";
+import { UserContext } from '../../App';
 
-const Checkout = () => {
+const Checkout = (product) => {
     const [checkout, setCheckout] = useState([]);
+    const [loggedInUser , setLoggedInUser] = useContext(UserContext);
     
     const {id} = useParams();
 
@@ -14,6 +17,24 @@ const Checkout = () => {
         .then(res => res.json())
         .then(data => setCheckout(data))
     }, [])
+    
+    const {name, price} = checkout;
+    const date = new Date();
+
+    const handleCheckout = () => {
+        const orderProduct = {...loggedInUser, name, price, date};
+        fetch('http://localhost:5000/newOrder/',{
+            method: 'POST',
+            headers: { 
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(orderProduct)
+        })
+        .then(res => res.json())
+        .then(data => console.log(data))
+    }
+
+
     return (
         <div>
             <Header></Header>
@@ -36,7 +57,7 @@ const Checkout = () => {
                             </tr>
                             <tr>
                                 <td></td>
-                                <td><Button variant="success">CheckOut</Button></td>  
+                                <Link to="/orders"><Button onClick={handleCheckout} variant="success">Checkout</Button></Link>  
                             </tr>
                             
                             
